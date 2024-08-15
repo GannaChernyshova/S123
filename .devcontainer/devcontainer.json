@@ -1,7 +1,6 @@
 {
 	"name": "S123",
 	"image": "mcr.microsoft.com/devcontainers/java:0-17",
-	"runArgs": ["--env-file","/Users/annachernysheva/Work/Docker/SE/S123/.devcontainer/devcontainer.env"],
 	"containerEnv": {
 		"JAVA_HOME": "/usr/lib/jvm/msopenjdk-current",
 		"TC_CLOUD_TOKEN": "${localEnv:TC_CLOUD_TOKEN}",

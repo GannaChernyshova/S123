@@ -14,7 +14,7 @@
 		},
 		"ghcr.io/eddumelendez/test-devcontainer/tcc:0.0.2":{}
 	},
-	"postCreateCommand": "nohup /usr/local/share/tcc-agent > /usr/local/share/tcc-agent.log 2>&1 &"
+	"postStartCommand": "nohup /usr/local/share/tcc-agent > /usr/local/share/tcc-agent.log 2>&1 &"
 }
 
 

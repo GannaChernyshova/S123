@@ -6,14 +6,15 @@
 		"TC_CLOUD_TOKEN": "${localEnv:TC_CLOUD_TOKEN}",
 		"TCC_PROJECT_KEY": "S123"
 	},
-	features: {
+	"features": {
 		"ghcr.io/devcontainers/features/java:1": {
 			"version": "none",
 			"installMaven": "true",
 			"installGradle": "false"
 		},
 		"ghcr.io/eddumelendez/test-devcontainer/tcc:0.0.2":{}
-	}
+	},
+	"postCreateCommand": "nohup /usr/local/share/tcc-agent > /usr/local/share/tcc-agent.log 2>&1 &"
 }
 
 

@@ -6,17 +6,37 @@
 		"TC_CLOUD_TOKEN": "${localEnv:TC_CLOUD_TOKEN}",
 		"TCC_PROJECT_KEY": "S123"
 	},
+	// Configure tool-specific properties.
+	"customizations": {
+		// Configure properties specific to VS Code.
+		"vscode": {
+			// Set *default* container specific settings.json values on container create.
+			"settings": { 
+				"workbench.colorTheme": "GitHub Dark",
+				"spring.initializr.defaultLanguage": "Java"
+			},
+			
+			// Add the IDs of extensions you want installed when the container is created.
+			"extensions": [
+				"asciidoctor.asciidoctor-vscode",
+				"github.github-vscode-theme",
+				"pivotal.vscode-boot-dev-pack",
+				"redhat.vscode-yaml",
+				"vscjava.vscode-java-pack"
+			]
+		}
+	},
+	"remoteUser": "vscode",
 	"features": {
+		"ghcr.io/devcontainers/features/git:1": {},
+		"ghcr.io/devcontainers/features/github-cli:1": {},
+		"ghcr.io/meaningful-ooo/devcontainer-features/homebrew:2": {},
 		"ghcr.io/devcontainers/features/java:1": {
 			"version": "none",
-			"installMaven": "true",
+			"installMaven": "false",
 			"installGradle": "false"
 		},
 		"ghcr.io/eddumelendez/test-devcontainer/tcc:0.0.2":{}
 	},
-	"postStartCommand": "nohup /usr/local/share/tcc-agent &"
+	"postAttachCommand": "nohup /usr/local/share/tcc-agent &"
 }
-
-
-
-

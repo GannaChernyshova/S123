@@ -18,7 +18,6 @@
 10. Go to the [Testcontainers Cloud dashboard](https://app.testcontainers.cloud/dashboard) and containers started for the tests and then exited
 11. Ask about Private registries and [show how to use them with Testcontainers Cloud](https://app.testcontainers.cloud/dashboard/settings)
 12. Tell about Service accounts and how to [run Testcontainers test in CI with Testcontainers Cloud](https://www.testcontainers.cloud/ci)
+13. Go to the latest GHA build, rerun the job, see CI build with proper Project, Workflow and Service account ![img_1.png](img_1.png)
 12. [Testcontainers Cloud pricing](https://www.testcontainers.cloud/pricing)
 
-P.S Check out the `ContainersConfig` class to see how elegant the Spring Boot and Testcontainers integration is now.
-P.S. ask our booth staff if you have any questions.

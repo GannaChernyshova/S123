@@ -47,6 +47,7 @@ public class TodoControllerTests {
                 new Todo(null, "Todo Item 2", false, 2)
         );
         todoRepository.saveAll(todos);
+        System.out.println(postgres.getContainerName());
 
         given()
                 .contentType(ContentType.JSON)

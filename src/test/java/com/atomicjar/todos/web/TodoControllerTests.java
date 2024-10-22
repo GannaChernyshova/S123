@@ -29,7 +29,7 @@ public class TodoControllerTests {
 
     @Container
     @ServiceConnection
-    static PostgreSQLContainer<?> postgres = new PostgreSQLContainer<>("postgres:15-alpine");
+    static PostgreSQLContainer<?> postgres = new PostgreSQLContainer<>("postgres:16-alpine");
 
     @Autowired
     TodoRepository todoRepository;
@@ -96,76 +96,6 @@ public class TodoControllerTests {
 
     @Test
     void shouldDeleteTodoById() {
-        Todo todo = todoRepository.save(new Todo(null, "Todo Item 1", false, 1));
-
-        assertThat(todoRepository.findById(todo.getId())).isPresent();
-        given()
-                .contentType(ContentType.JSON)
-                .when()
-                .delete("/todos/{id}", todo.getId())
-                .then()
-                .statusCode(200);
-
-        assertThat(todoRepository.findById(todo.getId())).isEmpty();
-    }
-
-    @Test
-    void shouldGetAllTodos2() {
-        List<Todo> todos = List.of(
-                new Todo(null, "Todo Item 1", false, 1),
-                new Todo(null, "Todo Item 2", false, 2),
-                new Todo(null, "Todo Item 2", false, 3)
-        );
-        todoRepository.saveAll(todos);
-
-        given()
-                .contentType(ContentType.JSON)
-                .when()
-                .get("/todos")
-                .then()
-                .statusCode(200)
-                .body(".", hasSize(3));
-    }
-
-    @Test
-    void shouldGetTodoById2() {
-        Todo todo = todoRepository.save(new Todo(null, "Todo Item 1", false, 1));
-
-        given()
-                .contentType(ContentType.JSON)
-                .when()
-                .get("/todos/{id}", todo.getId())
-                .then()
-                .statusCode(200)
-                .body("title", is("Todo Item 1"))
-                .body("completed", is(false))
-                .body("order", is(1));
-    }
-
-    @Test
-    void shouldCreateTodoSuccessfully2() {
-        given()
-                .contentType(ContentType.JSON)
-                .body(
-                        """
-                        {
-                            "title": "Todo Item 1",
-                            "completed": false,
-                            "order": 1
-                        }
-                        """
-                )
-                .when()
-                .post("/todos")
-                .then()
-                .statusCode(201)
-                .body("title", is("Todo Item 1"))
-                .body("completed", is(false))
-                .body("order", is(1));
-    }
-
-    @Test
-    void shouldDeleteTodoById2() {
         Todo todo = todoRepository.save(new Todo(null, "Todo Item 1", false, 1));
 
         assertThat(todoRepository.findById(todo.getId())).isPresent();

@@ -1,0 +1,30 @@
+services:
+  server:
+    build:
+      context: .
+      args:
+        PROFILE: "default"
+    ports:
+      - 8080:8080
+#    depends_on:
+#      - db  # Ensure the database starts before the app
+    environment:
+      - 'POSTGRES_HOST=db'
+      - 'POSTGRES_PORT=5432'
+      - 'POSTGRES_USER=postgres'
+      - 'POSTGRES_PASSWORD=postgres'  # Update with your actual password
+      - 'POSTGRES_DB=postgres'  # Update with your database name
+
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres  # Update with your actual password
+      POSTGRES_DB: postgres  # Update with your database name
+    ports:
+      - 5432:5432  # Expose the Postgres port
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5

@@ -6,7 +6,7 @@
 # separate terms of service, privacy policy, and support
 # documentation.
 
-name: Java CI with Maven
+name: tests
 
 on:
   push:
@@ -31,5 +31,5 @@ jobs:
       uses: atomicjar/testcontainers-cloud-setup-action@v1
       with:
         token: ${{ secrets.TC_CLOUD_TOKEN }}
-    - name: Test
-      run: ./mvnw test
+    - name: Build with Maven
+      run: mvn -B package --file pom.xml

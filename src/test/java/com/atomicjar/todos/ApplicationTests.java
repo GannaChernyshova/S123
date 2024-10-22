@@ -1,5 +1,6 @@
 package com.atomicjar.todos;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.testcontainers.service.connection.ServiceConnection;
@@ -13,6 +14,7 @@ class ApplicationTests {
 
     @Test
     void contextLoads() {
+//        Assertions.assertTrue(false);
     }
 
 }

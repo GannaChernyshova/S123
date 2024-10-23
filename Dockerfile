@@ -32,7 +32,7 @@ RUN --mount=type=bind,source=pom.xml,target=pom.xml \
 # stage with the correct filename of your package and update the base image of the "final" stage
 # use the relevant app server, e.g., using tomcat (https://hub.docker.com/_/tomcat/) as a base image.
 FROM deps as package
-ARG PROFILE="gcp"
+ARG PROFILE="test"
 WORKDIR /build
 
 COPY ./src src/

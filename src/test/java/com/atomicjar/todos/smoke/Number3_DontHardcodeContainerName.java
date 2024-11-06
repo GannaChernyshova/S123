@@ -10,10 +10,10 @@ import redis.clients.jedis.JedisPoolConfig;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class Three_DontHardcodeContainerName {
+public class Number3_DontHardcodeContainerName {
 
     GenericContainer<?> redis =
-            new GenericContainer<>("redis:5.0.3-alpine")
+            new GenericContainer<>("redis:7.4.1")
                     .withExposedPorts(6379)
                     .withCreateContainerCmdModifier(cmd -> cmd.withName("redis"));
 

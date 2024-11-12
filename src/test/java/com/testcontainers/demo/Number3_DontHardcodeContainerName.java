@@ -1,4 +1,4 @@
-package com.atomicjar.todos.smoke;
+package com.testcontainers.demo;
 
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.parallel.Execution;
@@ -21,8 +21,8 @@ public class Number3_DontHardcodeContainerName {
 
     @BeforeEach
     public  void setUp() {
-        // Assume that we have Redis running locally
         redis.start();
+        System.out.println(redis.getContainerName());
         jedisPool = new JedisPool(new JedisPoolConfig(), redis.getHost(), redis.getMappedPort(6379));
 
     }
@@ -32,7 +32,6 @@ public class Number3_DontHardcodeContainerName {
         // Assume that we have Redis running locally
         jedisPool.close();
         redis.stop();
-
     }
 
     @Test

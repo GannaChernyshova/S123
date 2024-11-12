@@ -10,4 +10,7 @@ import java.util.List;
 public interface TodoRepository extends ListCrudRepository<Todo, String>, ListPagingAndSortingRepository<Todo, String> {
     @Query("select t from Todo t where t.completed = false")
     List<Todo> getPendingTodos();
+
+    @Query("select t from Todo t where t.completed = true")
+    List<Todo> getCompletedTodos();
 }

@@ -15,5 +15,4 @@ public class ContainersConfig {
     PostgreSQLContainer<?> postgreSQLContainer(){
         return new PostgreSQLContainer<>("postgres:15-alpine");
     }
-
 }

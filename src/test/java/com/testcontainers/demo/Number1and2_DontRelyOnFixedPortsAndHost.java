@@ -1,4 +1,4 @@
-package com.atomicjar.todos.smoke;
+package com.testcontainers.demo;
 
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
@@ -22,15 +22,13 @@ public class Number1and2_DontRelyOnFixedPortsAndHost {
     @BeforeAll
     public static void setUp() {
         redis.start();
-        // Assume that we have Redis running locally
-        jedisPool = new JedisPool(new JedisPoolConfig(), "localhost",6379);
+        jedisPool = new JedisPool(new JedisPoolConfig(), redis.getHost(),redis.getMappedPort(6379));
     }
 
     @AfterAll
     public static void tearDown() {
         jedisPool.close();
         redis.stop();
-
     }
 
     @Test

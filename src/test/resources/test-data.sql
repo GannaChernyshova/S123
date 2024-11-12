@@ -1,14 +1,6 @@
--- Creating the todos table
-create table if not exists todos
-(
-    id           varchar(100) not null,
-    title        varchar(200) not null,
-    completed    boolean default false,
-    order_number int,
-    primary key (id)
-);
+DELETE
+FROM todos;
 
--- Inserting test data
 insert into todos (id, title, completed, order_number)
 values ('1', 'Buy groceries', false, 1),
        ('2', 'Prepare presentation', true, 2),

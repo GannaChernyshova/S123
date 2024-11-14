@@ -16,7 +16,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class Number6_DontUseLatest {
 
-    static public MongoDBContainer mongoContainer = new MongoDBContainer("mongo:latest"); // Use MongoDB >= 4.4 for transaction support
+    static public MongoDBContainer mongoContainer = new MongoDBContainer("mongo:3.6"); // But MongoDB 3.6 in prod
 
     private MongoClient mongoClient;
     private MongoDatabase database;

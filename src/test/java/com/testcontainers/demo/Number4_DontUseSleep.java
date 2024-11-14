@@ -28,24 +28,22 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class Number4_DontUseSleep {
 
-    GenericContainer redis = new GenericContainer<>("redis:7.4.1")
+    public GenericContainer redis = new GenericContainer<>("redis:7.4.1")
             .withExposedPorts(6379)
             .waitingFor(Wait.forLogMessage(".*Ready to accept connections.*\\n", 1));
 
     @Rule
     public GenericContainer<?> nginx = new GenericContainer<>("nginx:1.27.0-alpine3.19-slim")
-            .dependsOn(redis)
-            .withExposedPorts(80);
+            .withExposedPorts(80)
+            .dependsOn(redis);
 
     private JedisPool jedisPool;
 
     @Test
     public void testSimplePutAndGet() throws InterruptedException {
         redis.start();
-        Thread.sleep(2 * 1000); //waiting for container to be ready
 
         nginx.start();
-        Thread.sleep(2 * 1000); //waiting for container to be ready
 
         jedisPool = new JedisPool(new JedisPoolConfig(), redis.getHost(), redis.getMappedPort(6379));
 

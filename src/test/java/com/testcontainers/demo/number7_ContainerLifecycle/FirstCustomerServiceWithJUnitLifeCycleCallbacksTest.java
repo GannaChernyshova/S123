@@ -14,16 +14,23 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.testcontainers.containers.PostgreSQLContainer;
 
-public class CustomerServiceWithLifeCycleCallbacksTest {
+public class FirstCustomerServiceWithJUnitLifeCycleCallbacksTest {
     static PostgreSQLContainer<?> postgres = new PostgreSQLContainer<>(
             "postgres:16-alpine"
     );
 
-    CustomerService customerService;
+    static CustomerService customerService;
+    static DBConnectionProvider connectionProvider;
 
     @BeforeAll
     static void startContainers() {
         postgres.start();
+        connectionProvider = new DBConnectionProvider(
+                postgres.getJdbcUrl(),
+                postgres.getUsername(),
+                postgres.getPassword()
+        );
+        customerService = new CustomerService(connectionProvider);
     }
 
     @AfterAll
@@ -33,12 +40,6 @@ public class CustomerServiceWithLifeCycleCallbacksTest {
 
     @BeforeEach
     void setUp() {
-        DBConnectionProvider connectionProvider = new DBConnectionProvider(
-                postgres.getJdbcUrl(),
-                postgres.getUsername(),
-                postgres.getPassword()
-        );
-        customerService = new CustomerService(connectionProvider);
         customerService.deleteAllCustomers();
     }
 

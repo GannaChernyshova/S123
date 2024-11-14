@@ -14,8 +14,7 @@ public class Number3_DontHardcodeContainerName {
 
     GenericContainer<?> redis =
             new GenericContainer<>("redis:7.4.1")
-                    .withExposedPorts(6379)
-                    .withCreateContainerCmdModifier(cmd -> cmd.withName("redis"));
+                    .withExposedPorts(6379);
 
     private  JedisPool jedisPool;
 
@@ -29,7 +28,6 @@ public class Number3_DontHardcodeContainerName {
 
     @AfterEach
     public  void tearDown() {
-        // Assume that we have Redis running locally
         jedisPool.close();
         redis.stop();
     }

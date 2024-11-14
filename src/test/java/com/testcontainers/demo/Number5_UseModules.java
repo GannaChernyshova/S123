@@ -15,39 +15,19 @@ import java.util.Map;
 
 import org.testcontainers.containers.GenericContainer;
 
-import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class Number5_UseModules {
 
     // Using GenericContainer to create a PostgreSQL container
-//    GenericContainer<?> postgres = new GenericContainer<>("postgres:16-alpine")
-//            .withExposedPorts(5432)
-//            .withEnv("POSTGRES_USER", "test")
-//            .withEnv("POSTGRES_PASSWORD", "test")
-//            .withEnv("POSTGRES_DB", "test")
-//            .withCopyFileToContainer(MountableFile.forClasspathResource("schema.sql"),
-//                    "/docker-entrypoint-initdb.d/01-schema.sql")
-//            .waitingFor(
-//                    new LogMessageWaitStrategy()
-//                            .withRegEx(".*database system is ready to accept connections.*\\s")
-//                            .withTimes(2).withStartupTimeout(Duration.of(60L, ChronoUnit.SECONDS)));
 
     PostgreSQLContainer<?> postgres = new PostgreSQLContainer<>("postgres:16-alpine")
             .withCopyFileToContainer(MountableFile.forClasspathResource("schema.sql"),
                     "/docker-entrypoint-initdb.d/01-schema.sql");
 
-
     @Test
     void shouldGetPendingTodos() throws SQLException {
         postgres.start();
-//        var connection = DriverManager.getConnection(
-//                String.format(
-//                        "jdbc:postgresql://%s:%d/test", postgres.getHost(),
-//                        postgres.getFirstMappedPort()),
-//                "test",
-//                "test"
-//        );
         var connection = DriverManager.getConnection(
                 postgres.getJdbcUrl(),
                 postgres.getUsername(),

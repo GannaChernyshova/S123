@@ -16,7 +16,7 @@ import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
 
 @Testcontainers
-class CustomerServiceWithJUnit5ExtensionTest {
+class SecondCustomerServiceWithJUnit5ExtensionTest {
 
     @Container
     static PostgreSQLContainer<?> postgres = new PostgreSQLContainer<>(
@@ -38,6 +38,7 @@ class CustomerServiceWithJUnit5ExtensionTest {
 
     @Test
     void shouldCreateCustomer() {
+        System.out.println(postgres.getContainerName());
         customerService.createCustomer(new Customer(1L, "George JUnit5"));
 
         Optional<Customer> customer = customerService.getCustomer(1L);
@@ -48,6 +49,7 @@ class CustomerServiceWithJUnit5ExtensionTest {
 
     @Test
     void shouldGetCustomers() {
+        System.out.println(postgres.getContainerName());
         customerService.createCustomer(new Customer(1L, "George JUnit5"));
         customerService.createCustomer(new Customer(2L, "John JUnit5"));
 

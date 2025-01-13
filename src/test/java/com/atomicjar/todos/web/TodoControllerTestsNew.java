@@ -15,6 +15,7 @@ import static org.hamcrest.Matchers.hasSize;
 @Sql("/test-data.sql")
 public class TodoControllerTestsNew extends BaseIntegrationTest {
 
+    //Comment to trigger GHA
     @Autowired
     TodoRepository todoRepository;
 
